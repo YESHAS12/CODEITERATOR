@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Iterator AI Tool</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Add Prism.js for syntax highlighting -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-okaidia.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+    <h1>🧠 Game Code Iterator AI Tool</h1>
+    <form id="code-form" class="form">
+      <label for="code">Paste Code:</label>
+      <textarea name="code" id="code" rows="10" required placeholder="Paste your code here..."></textarea>
+
+      <label for="prompt">Describe Change:</label>
+      <input type="text" name="prompt" id="prompt" required placeholder="Describe the change you want to make...">
+
+      <button type="submit" class="btn-submit">Suggest Changes</button>
+    </form>
+
+    <div id="result" class="result" style="display:none;">
+      <h3>🧾 Suggested Code:</h3>
+      <pre id="updated" class="code-output language-python"></pre>
+
+      <button id="integrate" class="btn-integrate">✅ Integrate</button>
+    </div>
+  </div>
+
+  <!-- Add Prism.js for syntax highlighting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
+
+  <script>
+    const form = document.getElementById("code-form");
+    const result = document.getElementById("result");
+    const updated = document.getElementById("updated");
+    const integrate = document.getElementById("integrate");
+    const codeArea = document.getElementById("code");
+
+    form.onsubmit = async (e) => {
+      e.preventDefault();
+      result.style.display = "none";
+
+      const formData = new FormData(form);
+      const res = await fetch("/suggest", {
+        method: "POST",
+        body: formData
+      });
+      const data = await res.json();
+
+      updated.textContent = data.updated_code;
+      Prism.highlightElement(updated); // Highlight the updated code
+      result.style.display = "block";
+    };
+
+    integrate.onclick = () => {
+      // Append the new code snippet to the existing code
+      codeArea.value += "\n" + updated.textContent;
+      alert("Code updated!");
+    };
+  </script>
+</body>
+</html>

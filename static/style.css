@@ -1,0 +1,111 @@
+/* Global Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #f3f4f6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Container */
+.container {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 900px;
+    margin: 50px auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Header */
+h1 {
+    font-size: 2.2rem;
+    color: #2e3b4e;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Form Styling */
+.form label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+}
+
+textarea, input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+textarea {
+    min-height: 150px;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #aaa;
+}
+
+/* Button Styling */
+.btn-submit, .btn-integrate {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover, .btn-integrate:hover {
+    background-color: #45a049;
+}
+
+/* Result Styling */
+.result {
+    display: none;
+    margin-top: 30px;
+}
+
+.code-output {
+    background: #f7f7f7;
+    padding: 15px;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    color: #333;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.explanation-text {
+    background: #fafafa;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #555;
+}
+
+h3 {
+    color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    textarea, input {
+        font-size: 0.9rem;
+    }
+}
